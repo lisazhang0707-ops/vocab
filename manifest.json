@@ -1,0 +1,24 @@
+{
+  "name": "AI词汇卡",
+  "short_name": "AI词汇卡",
+  "description": "AI驱动的艾宾浩斯词汇记忆应用，支持跟读纠音",
+  "start_url": "/vocab/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1117",
+  "theme_color": "#0f1117",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='32' fill='%231a1d2e'/><rect x='0' y='0' width='192' height='6' fill='%234a80d6' rx='3'/><text x='96' y='68' text-anchor='middle' font-size='48' fill='%237ec8e3' font-family='sans-serif' font-weight='bold'>ABC</text><text x='96' y='118' text-anchor='middle' font-size='18' fill='%23a0b4d0' font-family='sans-serif'>AI词汇卡</text><rect x='56' y='138' width='80' height='4' rx='2' fill='%232d3550'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%231a1d2e'/><rect x='0' y='0' width='512' height='12' fill='%234a80d6' rx='6'/><text x='256' y='180' text-anchor='middle' font-size='140' fill='%237ec8e3' font-family='sans-serif' font-weight='bold'>ABC</text><text x='256' y='310' text-anchor='middle' font-size='50' fill='%23a0b4d0' font-family='sans-serif'>AI词汇卡</text><rect x='140' y='360' width='232' height='10' rx='5' fill='%232d3550'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
