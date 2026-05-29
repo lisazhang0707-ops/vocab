@@ -7,173 +7,173 @@
   <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#0f1117">
+  <meta name="theme-color" content="#eef1f5">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #1e2233; color: #f0f0f0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 24px 16px; }
-    h1 { font-size: 1.4rem; color: #fff; margin-bottom: 2px; }
-    .eb { color: #7ec8e3; font-size: 0.8rem; margin-bottom: 20px; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #eef1f5; color: #3d4a5c; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 24px 16px; }
+    h1 { font-size: 1.4rem; color: #ffffff; margin-bottom: 2px; }
+    .eb { color: #5b7fa5; font-size: 0.8rem; margin-bottom: 20px; }
     .card-wrap { width: 100%; max-width: 600px; position: relative; }
-    .card { background: #282d44; border-radius: 16px; padding: 28px 28px 24px; min-height: 280px; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; display: flex; flex-direction: column; box-shadow: 0 4px 24px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
-    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #4a80d6, #7ec8e3); }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+    .card { background: #ffffff; border-radius: 16px; padding: 28px 28px 24px; min-height: 280px; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; display: flex; flex-direction: column; box-shadow: 0 4px 24px rgba(0,0,0,0.06); position: relative; overflow: hidden; }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #6a8fb0, #5b7fa5); }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
     .word-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
-    .word { font-size: 1.9rem; font-weight: 700; color: #7ec8e3; }
+    .word { font-size: 1.9rem; font-weight: 700; color: #5b7fa5; }
     .level-tag { font-size: 0.65rem; padding: 2px 7px; border-radius: 4px; font-weight: 600; letter-spacing: 0.02em; margin-left: 2px; }
-    .word-speaker { background: none; border: none; cursor: pointer; font-size: 1.3rem; padding: 4px 8px; border-radius: 8px; transition: background 0.15s; color: #4a80d6; }
-    .word-speaker:hover { background: #252540; color: #7ec8e3; }
-    .word-speaker.playing { color: #50c878; }
+    .word-speaker { background: none; border: none; cursor: pointer; font-size: 1.3rem; padding: 4px 8px; border-radius: 8px; transition: background 0.15s; color: #6a8fb0; }
+    .word-speaker:hover { background: #d8dce5; color: #5b7fa5; }
+    .word-speaker.playing { color: #7fa87f; }
     .meta { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
-    .pron { color: #888; font-size: 0.9rem; }
-    .pos { background: #3a4060; color: #b0c4e0; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; }
+    .pron { color: #aab4c4; font-size: 0.9rem; }
+    .pos { background: #d8dce5; color: #5a6a80; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; }
     .section { display: none; margin-top: 12px; }
-    .section-label { font-size: 0.72rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .def { color: #c8e6ff; font-size: 1rem; line-height: 1.65; }
-    .ex-en { color: #8ab4d4; font-size: 0.88rem; line-height: 1.6; font-style: italic; display: flex; align-items: flex-start; gap: 8px; }
-    .ex-cn { color: #7a8fa8; font-size: 0.85rem; line-height: 1.6; margin-top: 4px; padding-left: 0; }
-    .syntax { color: #b0a0d0; font-size: 0.82rem; line-height: 1.65; margin-top: 8px; padding: 8px 10px; background: #303558; border-radius: 6px; border-left: 3px solid #8a7aed; white-space: pre-line; }
-    .syntax-label { font-size: 0.7rem; color: #6a5acd; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .tip { color: #f0c040; font-size: 0.85rem; line-height: 1.6; margin-top: 14px; padding-top: 12px; border-top: 1px solid #2a2e45; }
-    .speaker-btn { background: none; border: none; cursor: pointer; font-size: 0.9rem; padding: 0; margin-top: 6px; color: #4a80d6; display: flex; align-items: center; gap: 5px; font-size: 0.78rem; }
-    .speaker-btn:hover { color: #7ec8e3; }
-    .status-bar { width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 0.78rem; color: #555; }
+    .section-label { font-size: 0.72rem; color: #8896a8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .def { color: #4a5a6a; font-size: 1rem; line-height: 1.65; }
+    .ex-en { color: #5a7a90; font-size: 0.88rem; line-height: 1.6; font-style: italic; display: flex; align-items: flex-start; gap: 8px; }
+    .ex-cn { color: #6a8098; font-size: 0.85rem; line-height: 1.6; margin-top: 4px; padding-left: 0; }
+    .syntax { color: #7a6a90; font-size: 0.82rem; line-height: 1.65; margin-top: 8px; padding: 8px 10px; background: #e8ebf0; border-radius: 6px; border-left: 3px solid #6a5ab0; white-space: pre-line; }
+    .syntax-label { font-size: 0.7rem; color: #5a4a90; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .tip { color: #b09830; font-size: 0.85rem; line-height: 1.6; margin-top: 14px; padding-top: 12px; border-top: 1px solid #d0d6e0; }
+    .speaker-btn { background: none; border: none; cursor: pointer; font-size: 0.9rem; padding: 0; margin-top: 6px; color: #6a8fb0; display: flex; align-items: center; gap: 5px; font-size: 0.78rem; }
+    .speaker-btn:hover { color: #5b7fa5; }
+    .status-bar { width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 0.78rem; color: #8896a8; }
     .due-count { color: #e07050; }
-    .streak { color: #50c878; }
-    .today-left { color: #a0b4d0; }
+    .streak { color: #7fa87f; }
+    .today-left { color: #6a7a90; }
     .nav { display: flex; gap: 8px; margin-top: 14px; width: 100%; max-width: 600px; }
     .nav button { flex: 1; padding: 11px 8px; border: none; border-radius: 8px; font-size: 0.88rem; cursor: pointer; font-weight: 500; transition: background 0.15s, transform 0.1s; }
     .nav button:active { transform: scale(0.97); }
-    .nav button.forgot { background: #4a2d2d; color: #e07070; }
-    .nav button.forgot:hover { background: #5a3d3d; }
-    .nav button.hard { background: #3d3520; color: #e0b840; }
-    .nav button.hard:hover { background: #4d4530; }
-    .nav button.good { background: #1d3d2a; color: #50c878; }
-    .nav button.good:hover { background: #2d4d3a; }
-    .nav button.easy { background: #1d2d4a; color: #7090e0; }
-    .nav button.easy:hover { background: #2d3d5a; }
-    .hint { color: #666; font-size: 0.75rem; text-align: center; margin-top: 10px; }
-    .done-msg { width: 100%; max-width: 600px; min-height: 280px; background: #282d44; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: #555; text-align: center; padding: 40px; }
+    .nav button.forgot { background: #f0d8d8; color: #c06060; }
+    .nav button.forgot:hover { background: #e8c8c8; }
+    .nav button.hard { background: #f0ead0; color: #a09040; }
+    .nav button.hard:hover { background: #e8e0c0; }
+    .nav button.good { background: #d0e8d8; color: #7fa87f; }
+    .nav button.good:hover { background: #c0d8c8; }
+    .nav button.easy { background: #d0d8f0; color: #5068a0; }
+    .nav button.easy:hover { background: #c0c8e0; }
+    .hint { color: #9aa6b8; font-size: 0.75rem; text-align: center; margin-top: 10px; }
+    .done-msg { width: 100%; max-width: 600px; min-height: 280px; background: #ffffff; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: #8896a8; text-align: center; padding: 40px; }
     .done-msg .big { font-size: 3rem; }
     .done-msg p { font-size: 1rem; }
-    .done-msg .sub { font-size: 0.85rem; color: #444; }
+    .done-msg .sub { font-size: 0.85rem; color: #7a889c; }
     .progress-wrap { width: 100%; max-width: 600px; margin-top: 16px; }
-    .prog-bar { height: 3px; background: #3a4060; border-radius: 2px; overflow: hidden; }
-    .prog-fill { height: 100%; background: linear-gradient(90deg, #4a80d6, #50c878); transition: width 0.4s; }
-    .prog-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: #444; margin-top: 5px; }
-    .reset-btn { background: #3a4060; border: 1px solid #4a5070; color: #888; font-size: 0.75rem; padding: 5px 12px; border-radius: 6px; cursor: pointer; margin-top: 8px; }
-    .reset-btn:hover { background: #4a5070; color: #aaa; }
+    .prog-bar { height: 3px; background: #d8dce5; border-radius: 2px; overflow: hidden; }
+    .prog-fill { height: 100%; background: linear-gradient(90deg, #6a8fb0, #7fa87f); transition: width 0.4s; }
+    .prog-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: #7a889c; margin-top: 5px; }
+    .reset-btn { background: #d8dce5; border: 1px solid #c8ccd8; color: #aab4c4; font-size: 0.75rem; padding: 5px 12px; border-radius: 6px; cursor: pointer; margin-top: 8px; }
+    .reset-btn:hover { background: #c8ccd8; color: #aaa; }
     .practice-wrap { width: 100%; max-width: 600px; margin-top: 24px; }
     .practice-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .practice-title { font-size: 0.9rem; color: #a0b4d0; }
-    .practice-badge { background: #2d3550; color: #7ec8e3; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; }
-    .practice-area { background: #282d44; border-radius: 12px; padding: 16px; border: 1px solid #3a4060; }
+    .practice-title { font-size: 0.9rem; color: #6a7a90; }
+    .practice-badge { background: #d8dce5; color: #5b7fa5; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; }
+    .practice-area { background: #ffffff; border-radius: 12px; padding: 16px; border: 1px solid #d8dce5; }
 
     /* Voice Practice */
-    .voice-target { background: #222642; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #3a4060; }
-    .voice-target-label { font-size: 0.7rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-    .voice-target-text { font-size: 0.95rem; color: #8ab4d4; line-height: 1.5; font-style: italic; }
-    .voice-target-pron { font-size: 0.8rem; color: #666; margin-top: 4px; }
+    .voice-target { background: #f0f3f8; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #d8dce5; }
+    .voice-target-label { font-size: 0.7rem; color: #8896a8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .voice-target-text { font-size: 0.95rem; color: #5a7a90; line-height: 1.5; font-style: italic; }
+    .voice-target-pron { font-size: 0.8rem; color: #9aa6b8; margin-top: 4px; }
 
     /* Pronunciation annotations */
-    .phonetic-info { display: none; margin-top: 8px; background: #222642; border-radius: 8px; padding: 10px 12px; border: 1px solid #3a4060; font-size: 0.82rem; line-height: 1.7; }
+    .phonetic-info { display: none; margin-top: 8px; background: #f0f3f8; border-radius: 8px; padding: 10px 12px; border: 1px solid #d8dce5; font-size: 0.82rem; line-height: 1.7; }
     .phonetic-info.show { display: block; }
-    .phonetic-toggle { background: none; border: 1px solid #2a2e45; color: #555; font-size: 0.72rem; padding: 3px 8px; border-radius: 5px; cursor: pointer; margin-top: 6px; transition: all 0.15s; }
-    .phonetic-toggle:hover { background: #1e2030; color: #888; }
-    .phonetic-toggle.active { border-color: #4a80d6; color: #7ec8e3; }
+    .phonetic-toggle { background: none; border: 1px solid #d0d6e0; color: #8896a8; font-size: 0.72rem; padding: 3px 8px; border-radius: 5px; cursor: pointer; margin-top: 6px; transition: all 0.15s; }
+    .phonetic-toggle:hover { background: #d8dce5; color: #aab4c4; }
+    .phonetic-toggle.active { border-color: #6a8fb0; color: #5b7fa5; }
     .phonetic-section { margin-bottom: 8px; }
     .phonetic-section:last-child { margin-bottom: 0; }
-    .phonetic-label { font-size: 0.68rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
-    .phonetic-content { color: #a0a0a0; }
-    .phonetic-content .stress { color: #e07070; font-weight: 600; text-decoration: underline; text-decoration-color: #e07070; }
-    .phonetic-content .liaison { color: #7ec8e3; }
-    .phonetic-content .weak { color: #666; font-style: italic; }
-    .phonetic-content .pause { color: #f0c040; font-weight: bold; }
-    .phonetic-content .intl { color: #50c878; }
-    .phonetic-raw { color: #666; font-size: 0.78rem; line-height: 1.6; margin-top: 4px; }
+    .phonetic-label { font-size: 0.68rem; color: #8896a8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
+    .phonetic-content { color: #7a8a9c; }
+    .phonetic-content .stress { color: #c06060; font-weight: 600; text-decoration: underline; text-decoration-color: #c06060; }
+    .phonetic-content .liaison { color: #5b7fa5; }
+    .phonetic-content .weak { color: #9aa6b8; font-style: italic; }
+    .phonetic-content .pause { color: #b09830; font-weight: bold; }
+    .phonetic-content .intl { color: #7fa87f; }
+    .phonetic-raw { color: #9aa6b8; font-size: 0.78rem; line-height: 1.6; margin-top: 4px; }
 
     .annotated-sentence { line-height: 2; font-size: 0.95rem; }
-    .annotated-sentence .a-stress { color: #e07070; font-weight: 700; text-decoration: underline wavy #e07070; }
-    .annotated-sentence .a-liaison { color: #7ec8e3; text-decoration: underline dotted #7ec8e3; }
-    .annotated-sentence .a-weak { color: #666; }
-    .annotated-sentence .a-pause { color: #f0c040; font-weight: bold; padding: 0 2px; }
-    .annotated-sentence .a-normal { color: #8ab4d4; }
+    .annotated-sentence .a-stress { color: #c06060; font-weight: 700; text-decoration: underline wavy #c06060; }
+    .annotated-sentence .a-liaison { color: #5b7fa5; text-decoration: underline dotted #5b7fa5; }
+    .annotated-sentence .a-weak { color: #9aa6b8; }
+    .annotated-sentence .a-pause { color: #b09830; font-weight: bold; padding: 0 2px; }
+    .annotated-sentence .a-normal { color: #5a7a90; }
 
-    .voice-transcript { min-height: 52px; background: #1e2233; border: 1px solid #3a4060; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; font-size: 0.92rem; color: #f0f0f0; line-height: 1.5; }
-    .voice-transcript-placeholder { color: #444; font-size: 0.85rem; }
+    .voice-transcript { min-height: 52px; background: #eef1f5; border: 1px solid #d8dce5; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; font-size: 0.92rem; color: #3d4a5c; line-height: 1.5; }
+    .voice-transcript-placeholder { color: #7a889c; font-size: 0.85rem; }
 
     .voice-mic-row { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
-    .mic-btn { width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: all 0.2s; flex-shrink: 0; background: #4a80d6; color: #fff; }
-    .mic-btn:hover { background: #5a90e6; transform: scale(1.05); }
-    .mic-btn.recording { background: #e05050; animation: pulse 1s ease-in-out infinite; }
+    .mic-btn { width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: all 0.2s; flex-shrink: 0; background: #6a8fb0; color: #ffffff; }
+    .mic-btn:hover { background: #7a9fc0; transform: scale(1.05); }
+    .mic-btn.recording { background: #c05050; animation: pulse 1s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(224,80,80,0.4)} 50%{box-shadow:0 0 0 12px rgba(224,80,80,0)} }
-    .mic-status { font-size: 0.82rem; color: #666; flex: 1; }
-    .mic-status.active { color: #e05050; }
+    .mic-status { font-size: 0.82rem; color: #9aa6b8; flex: 1; }
+    .mic-status.active { color: #c05050; }
 
-    .voice-compare { display: none; margin-top: 10px; background: #222642; border-radius: 8px; padding: 10px 12px; border: 1px solid #3a4060; }
+    .voice-compare { display: none; margin-top: 10px; background: #f0f3f8; border-radius: 8px; padding: 10px 12px; border: 1px solid #d8dce5; }
     .voice-compare.show { display: block; }
-    .compare-label { font-size: 0.7rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .compare-label { font-size: 0.7rem; color: #8896a8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .compare-row { display: flex; gap: 10px; align-items: flex-start; }
     .compare-col { flex: 1; }
     .compare-tag { font-size: 0.65rem; padding: 1px 5px; border-radius: 3px; margin-bottom: 3px; display: inline-block; }
-    .compare-tag.yours { background: #3d2a2a; color: #e07070; }
-    .compare-tag.target { background: #1a2d3d; color: #7ec8e3; }
+    .compare-tag.yours { background: #f0e0e0; color: #c06060; }
+    .compare-tag.target { background: #e0e8f0; color: #5b7fa5; }
     .compare-word { font-size: 0.88rem; line-height: 1.5; }
-    .compare-word.wrong { color: #e07070; background: #2a1a1a; padding: 1px 4px; border-radius: 3px; }
-    .compare-word.correct { color: #50c878; }
-    .compare-word.missed { color: #e0b840; background: #2d2010; padding: 1px 4px; border-radius: 3px; text-decoration: underline; }
+    .compare-word.wrong { color: #c06060; background: #2a1a1a; padding: 1px 4px; border-radius: 3px; }
+    .compare-word.correct { color: #7fa87f; }
+    .compare-word.missed { color: #a09040; background: #f0e8d0; padding: 1px 4px; border-radius: 3px; text-decoration: underline; }
 
     .voice-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-    .voice-actions button { background: #3a4060; border: none; color: #b0c4e0; font-size: 0.78rem; padding: 6px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: background 0.15s; }
-    .voice-actions button:hover { background: #4a5070; }
-    .voice-actions button.primary { background: #2a4a6a; color: #a0d0f0; }
-    .voice-actions button.primary:hover { background: #3a5a7a; }
+    .voice-actions button { background: #d8dce5; border: none; color: #5a6a80; font-size: 0.78rem; padding: 6px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: background 0.15s; }
+    .voice-actions button:hover { background: #c8ccd8; }
+    .voice-actions button.primary { background: #d0dce8; color: #6a90b0; }
+    .voice-actions button.primary:hover { background: #c0d0e0; }
 
     .practice-feedback { margin-top: 10px; font-size: 0.82rem; line-height: 1.6; padding: 10px 12px; border-radius: 8px; display: none; }
-    .practice-feedback.error { background: #2a1a1a; color: #e07070; border: 1px solid #4a2a2a; display: block; }
-    .practice-feedback.ok { background: #1a2a1a; color: #50c878; border: 1px solid #2a4a2a; display: block; }
-    .practice-hint { font-size: 0.75rem; color: #555; margin-top: 6px; }
+    .practice-feedback.error { background: #2a1a1a; color: #c06060; border: 1px solid #4a2a2a; display: block; }
+    .practice-feedback.ok { background: #e0f0e0; color: #7fa87f; border: 1px solid #d0e8d0; display: block; }
+    .practice-hint { font-size: 0.75rem; color: #8896a8; margin-top: 6px; }
 
     /* Old textarea hidden */
     .practice-textarea { display: none; }
 
     /* Clickable word in example */
-    .clickable-word { cursor: pointer; border-bottom: 1px dashed #4a80d6; padding: 0 1px; transition: background 0.15s; border-radius: 2px; }
-    .clickable-word:hover { background: #2a3050; }
-    .clickable-word.added { border-bottom-color: #50c878; color: #50c878; }
+    .clickable-word { cursor: pointer; border-bottom: 1px dashed #6a8fb0; padding: 0 1px; transition: background 0.15s; border-radius: 2px; }
+    .clickable-word:hover { background: #d8dce5; }
+    .clickable-word.added { border-bottom-color: #7fa87f; color: #7fa87f; }
 
     /* Add word modal */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.show { display: flex; }
-    .modal { background: #282d44; border-radius: 16px; padding: 24px; width: 100%; max-width: 440px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
+    .modal { background: #ffffff; border-radius: 16px; padding: 24px; width: 100%; max-width: 440px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .modal-title { font-size: 1rem; color: #fff; }
-    .modal-close { background: none; border: none; color: #555; font-size: 1.2rem; cursor: pointer; padding: 4px; }
-    .modal-close:hover { color: #888; }
-    .modal-word { font-size: 1.4rem; color: #7ec8e3; font-weight: 700; margin-bottom: 12px; }
+    .modal-title { font-size: 1rem; color: #ffffff; }
+    .modal-close { background: none; border: none; color: #8896a8; font-size: 1.2rem; cursor: pointer; padding: 4px; }
+    .modal-close:hover { color: #aab4c4; }
+    .modal-word { font-size: 1.4rem; color: #5b7fa5; font-weight: 700; margin-bottom: 12px; }
     .modal-field { margin-bottom: 12px; }
-    .modal-label { font-size: 0.72rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .modal-input { width: 100%; background: #1e2233; border: 1px solid #3a4060; border-radius: 8px; color: #f0f0f0; font-size: 0.88rem; padding: 8px 10px; font-family: inherit; outline: none; box-sizing: border-box; }
-    .modal-input:focus { border-color: #4a80d6; }
-    .modal-input::placeholder { color: #444; }
+    .modal-label { font-size: 0.72rem; color: #8896a8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .modal-input { width: 100%; background: #eef1f5; border: 1px solid #d8dce5; border-radius: 8px; color: #3d4a5c; font-size: 0.88rem; padding: 8px 10px; font-family: inherit; outline: none; box-sizing: border-box; }
+    .modal-input:focus { border-color: #6a8fb0; }
+    .modal-input::placeholder { color: #7a889c; }
     .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
     .modal-actions button { flex: 1; padding: 10px; border: none; border-radius: 8px; font-size: 0.88rem; cursor: pointer; transition: background 0.15s; }
-    .modal-cancel { background: #3a4060; color: #a0a0a0; }
-    .modal-cancel:hover { background: #4a5070; }
-    .modal-confirm { background: #4a80d6; color: #fff; }
-    .modal-confirm:hover { background: #5a90e6; }
-    .modal-tip { font-size: 0.75rem; color: #444; margin-top: 8px; line-height: 1.5; }
+    .modal-cancel { background: #d8dce5; color: #7a8a9c; }
+    .modal-cancel:hover { background: #c8ccd8; }
+    .modal-confirm { background: #6a8fb0; color: #ffffff; }
+    .modal-confirm:hover { background: #7a9fc0; }
+    .modal-tip { font-size: 0.75rem; color: #7a889c; margin-top: 8px; line-height: 1.5; }
   </style>
 </head>
 <body>
-  <h1>AI 词汇卡 <span style="font-size:0.8rem;color:#555;font-weight:400">·</span> <span id="deckTab" style="font-size:0.8rem;color:#7ec8e3;cursor:pointer" onclick="openCustomWordList()">📚 生词库</span></h1>
+  <h1>AI 词汇卡 <span style="font-size:0.8rem;color:#8896a8;font-weight:400">·</span> <span id="deckTab" style="font-size:0.8rem;color:#5b7fa5;cursor:pointer" onclick="openCustomWordList()">📚 生词库</span></h1>
   <p class="eb">艾宾浩斯遗忘曲线 · 每日10词 · 跟读纠音</p>
 
   <div style="width:100%;max-width:600px;margin-bottom:12px">
     <div style="display:flex;gap:8px">
-      <input id="searchInput" placeholder="搜索单词（支持中文）..." style="flex:1;background:#282d44;border:1px solid #3a4060;border-radius:8px;color:#f0f0f0;font-size:0.88rem;padding:8px 10px;outline:none" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Enter')goSearch()">
-      <button onclick="goSearch()" style="background:#3a4060;border:none;color:#b0c4e0;font-size:0.82rem;padding:8px 14px;border-radius:8px;cursor:pointer">搜索</button>
+      <input id="searchInput" placeholder="搜索单词（支持中文）..." style="flex:1;background:#ffffff;border:1px solid #d8dce5;border-radius:8px;color:#3d4a5c;font-size:0.88rem;padding:8px 10px;outline:none" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Enter')goSearch()">
+      <button onclick="goSearch()" style="background:#d8dce5;border:none;color:#5a6a80;font-size:0.82rem;padding:8px 14px;border-radius:8px;cursor:pointer">搜索</button>
     </div>
-    <div id="searchResults" style="display:none;background:#282d44;border:1px solid #3a4060;border-radius:8px;margin-top:6px;max-height:200px;overflow-y:auto;font-size:0.85rem"></div>
+    <div id="searchResults" style="display:none;background:#ffffff;border:1px solid #d8dce5;border-radius:8px;margin-top:6px;max-height:200px;overflow-y:auto;font-size:0.85rem"></div>
   </div>
 
   <div class="card-wrap">
@@ -208,7 +208,7 @@
     <span id="dueCount" class="due-count"></span>
     <span id="todayLeft" class="today-left"></span>
     <span id="streak"></span>
-    <span id="customCount" style="color:#a090c0;cursor:pointer" onclick="openCustomWordList()" title="查看生词库"></span>
+    <span id="customCount" style="color:#7a6a90;cursor:pointer" onclick="openCustomWordList()" title="查看生词库"></span>
   </div>
 
   <!-- Add Word Modal -->
@@ -274,7 +274,7 @@
         <button class="mic-btn" id="micBtn" onclick="toggleRecording()" title="按住录音">&#x1F3A4;</button>
         <div>
           <div class="mic-status" id="micStatus">准备就绪</div>
-          <div style="font-size:0.72rem;color:#444;margin-top:2px" id="micHint">请在当前例句页面练习</div>
+          <div style="font-size:0.72rem;color:#7a889c;margin-top:2px" id="micHint">请在当前例句页面练习</div>
         </div>
       </div>
 
@@ -317,7 +317,7 @@
     <button class="easy" onclick="rate(3)">太简单</button>
   </div>
 
-  <p class="hint">点卡片翻面 · 1-4 评分 · ➡ 跳过 · Ctrl+K 搜索 · <span style="color:#666;font-size:0.7rem">1不认识 2模糊 3认识 4太简单</span></p>
+  <p class="hint">点卡片翻面 · 1-4 评分 · ➡ 跳过 · Ctrl+K 搜索 · <span style="color:#9aa6b8;font-size:0.7rem">1不认识 2模糊 3认识 4太简单</span></p>
 
 <script>
 const WORDS = [
@@ -487,15 +487,15 @@ function handleSearch(v){
   const custom=customWords.filter(w=>w.word.toLowerCase().includes(q)||(w.def&&w.def.toLowerCase().includes(q)));
   let html='';
   if(main.length>0){
-    html+='<div style="padding:6px 10px;color:#555;font-size:0.75rem">内置词库</div>';
+    html+='<div style="padding:6px 10px;color:#8896a8;font-size:0.75rem">内置词库</div>';
     main.slice(0,5).forEach(w=>{
-      html+='<div style="padding:8px 10px;cursor:pointer;border-bottom:1px solid #2a2e45" onclick="jumpToWord(\'main\','+WORDS.indexOf(w)+')"><span style="color:#7ec8e3">'+w.word+'</span> <span style="color:#555;font-size:0.78rem">'+w.pron+'</span> <span style="color:#888;font-size:0.78rem">'+w.def.split('；')[0]+'</span></div>';
+      html+='<div style="padding:8px 10px;cursor:pointer;border-bottom:1px solid #d0d6e0" onclick="jumpToWord(\'main\','+WORDS.indexOf(w)+')"><span style="color:#5b7fa5">'+w.word+'</span> <span style="color:#8896a8;font-size:0.78rem">'+w.pron+'</span> <span style="color:#aab4c4;font-size:0.78rem">'+w.def.split('；')[0]+'</span></div>';
     });
   }
   if(custom.length>0){
-    html+='<div style="padding:6px 10px;color:#555;font-size:0.75rem">生词库</div>';
+    html+='<div style="padding:6px 10px;color:#8896a8;font-size:0.75rem">生词库</div>';
     custom.slice(0,5).forEach(w=>{
-      html+='<div style="padding:8px 10px;cursor:pointer;border-bottom:1px solid #2a2e45" onclick="jumpToWord(\'custom\',\''+w.word.replace(/'/g,"\\'")+'\')"><span style="color:#a090c0">'+w.word+'</span> <span style="color:#888;font-size:0.78rem">'+w.def.split('；')[0]+'</span></div>';
+      html+='<div style="padding:8px 10px;cursor:pointer;border-bottom:1px solid #d0d6e0" onclick="jumpToWord(\'custom\',\''+w.word.replace(/'/g,"\\'")+'\')"><span style="color:#7a6a90">'+w.word+'</span> <span style="color:#aab4c4;font-size:0.78rem">'+w.def.split('；')[0]+'</span></div>';
     });
   }
   if(!html)html='<div style="padding:10px;color:#555">未找到</div>';
@@ -685,14 +685,14 @@ function confirmAddWord(){
 function openCustomWordList(){
   const content=document.getElementById('customWordListContent');
   if(customWords.length===0){
-    content.innerHTML='<p style="color:#555;text-align:center;padding:20px">生词库是空的，在例句中点击不认识的词添加</p>';
+    content.innerHTML='<p style="color:#8896a8;text-align:center;padding:20px">生词库是空的，在例句中点击不认识的词添加</p>';
   }else{
     content.innerHTML=customWords.map(c=>{
       const s=getCWState(c.word.toLowerCase());
       const next=s.next?new Date(s.next).toLocaleDateString('zh-CN'):'立即复习';
-      return'<div style="padding:8px 0;border-bottom:1px solid #252540"><div style="color:#7ec8e3;font-size:0.95rem">'+c.word+' <span style="color:#555;font-size:0.75rem">'+c.def+'</span></div>'+
-        (c.ex?'<div style="color:#8ab4d4;font-size:0.8rem;font-style:italic;margin-top:2px">'+c.ex+'</div>':'')+
-        '<div style="color:#444;font-size:0.72rem;margin-top:2px">下次复习: '+next+' &nbsp; <span style="cursor:pointer;color:#e05050" onclick="removeCustomWord(\''+c.word.replace(/'/g,"\\'")+'\')">删除</span></div></div>';
+      return'<div style="padding:8px 0;border-bottom:1px solid #d8dce5"><div style="color:#5b7fa5;font-size:0.95rem">'+c.word+' <span style="color:#8896a8;font-size:0.75rem">'+c.def+'</span></div>'+
+        (c.ex?'<div style="color:#5a7a90;font-size:0.8rem;font-style:italic;margin-top:2px">'+c.ex+'</div>':'')+
+        '<div style="color:#7a889c;font-size:0.72rem;margin-top:2px">下次复习: '+next+' &nbsp; <span style="cursor:pointer;color:#c05050" onclick="removeCustomWord(\''+c.word.replace(/'/g,"\\'")+'\')">删除</span></div></div>';
     }).join('');
   }
   document.getElementById('customWordListModal').classList.add('show');
@@ -714,7 +714,7 @@ let cwFlipped = false;
 function switchToCustomDeck(){
   document.getElementById('mainDeck').style.display='none';
   document.getElementById('customDeck').style.display='block';
-  document.getElementById('deckTab').style.color='#555';
+  document.getElementById('deckTab').style.color='#8896a8';
   document.getElementById('deckTab').textContent='← AI词库';
   cwFlipped=false;
   if(customWords.length===0){
@@ -730,7 +730,7 @@ function switchToCustomDeck(){
 function switchToMainDeck(){
   document.getElementById('customDeck').style.display='none';
   document.getElementById('mainDeck').style.display='block';
-  document.getElementById('deckTab').style.color='#7ec8e3';
+  document.getElementById('deckTab').style.color='#5b7fa5';
   document.getElementById('deckTab').textContent='📚 生词库';
 }
 
